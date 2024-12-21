@@ -68,8 +68,8 @@ userRoute.post('/signin', async (c) => {
     return c.json({ error: "wrong password" });
   }
 
-	const jwt = await sign({ id: user.id }, c.env.JWT_SECRET);
-	return c.json({ jwt });
+	const token = await sign({ id: user.id }, c.env.JWT_SECRET);
+	return c.json({ token });
 	})
 
 export default userRoute

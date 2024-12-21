@@ -1,0 +1,1 @@
+export const BACKEND_URL = "https://backend.fkcfazlul-fk.workers.dev/api/v1";

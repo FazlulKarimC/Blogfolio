@@ -35,7 +35,7 @@ userRoute.post('/signup', async(c) => {
     })
   
     const token = await sign({id: user.id}, c.env.JWT_SECRET)
-    return c.json({ token }, 200)
+    return c.json({ token : token, id :user.id}, 200)
     })
   
   
@@ -69,7 +69,7 @@ userRoute.post('/signin', async (c) => {
   }
 
 	const token = await sign({ id: user.id }, c.env.JWT_SECRET);
-	return c.json({ token });
+	return c.json({ token : token, id :user.id});
 	})
 
 export default userRoute

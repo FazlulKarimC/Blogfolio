@@ -84,7 +84,19 @@ app.get('/bulk', async (c) => {
         datasourceUrl: c.env?.DATABASE_URL,
     }).$extends(withAccelerate());
 
-    const posts = await prisma.post.findMany({});
+    const posts = await prisma.post.findMany({
+        select: {
+            id: true,
+            title: true,
+            content: true,
+            authorId: true,
+            author: {
+                select: {
+                    name: true,
+                }
+            }
+        }
+    });
 
     return c.json(posts);
 })
@@ -98,7 +110,19 @@ app.get('/:id', async (c) => {
 	const post = await prisma.post.findUnique({
 		where: {
 			id
-		}
+		},
+        select: {
+            id: true,
+            title: true,
+            content: true,
+            authorId: true,
+            author: {
+                select: {
+                    name: true,
+                }
+            }
+        }
+
 	});
 
 	return c.json(post);

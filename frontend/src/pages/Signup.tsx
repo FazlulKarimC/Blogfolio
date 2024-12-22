@@ -22,7 +22,9 @@ export const Signup : React.FC = () => {
             const response = await axios.post( BACKEND_URL + "/user/signup", userSignupInput);
             console.log(response.data);
             const token = response.data.token;
+            const id = response.data.id;
             localStorage.setItem("token", token);
+            localStorage.setItem("userId", id);
             navigate("/blogs");   
 
         } catch (error) {
